@@ -1,103 +1,148 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState } from "react"
+// import { PetitionIntro } from "@/components/petition-intro"
+// import { PetitionForm } from "@/components/petition-form"
+// import { SignatureStats } from "@/components/signature-stats"
+// import { SuccessMessage } from "@/components/success-message"
+// import { Footer } from "@/components/footer"
+import { PetitionIntro } from "./components/petition-intro"
+import { PetitionForm } from "./components/petition-form2"
+import { SignatureStats } from "./components/signature-stats"
+import { SuccessMessage } from "./components/success-message"
+import { Footer } from "./components/footer"
+
+export interface Signature {
+  id: string
+  name: string
+  email: string
+  message?: string
+  timestamp: Date
+}
+
+
+export default function PetitionPage() {
+  const [signatures, setSignatures] = useState<Signature[]>([
+    {
+      id: "1",
+      name: "Sarah Johnson",
+      email: "sarah@example.com",
+      message: "This is crucial for our community's future.",
+      timestamp: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
+    },
+    {
+      id: "2",
+      name: "Michael Chen",
+      email: "michael@example.com",
+      timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
+    },
+    {
+      id: "3",
+      name: "Emma Rodriguez",
+      email: "emma@example.com",
+      message: "We must protect our environment for future generations.",
+      timestamp: new Date(Date.now() - 1000 * 60 * 60 * 5), // 5 hours ago
+    },
+  ])
+
+
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [newSignature, setNewSignature] = useState<Signature | null>(null)
+
+
+  const handleSignPetition = (formData: { name: string; email: string; message?: string }) => {
+    const signature: Signature = {
+      id: Date.now().toString(),
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      timestamp: new Date(),
+    }
+
+
+    setSignatures((prev) => [signature, ...prev])
+    setNewSignature(signature)
+    setShowSuccess(true)
+
+
+    // Auto-hide success message after 10 seconds
+    setTimeout(() => {
+      setShowSuccess(false)
+    }, 10000)
+  }
+
+
+  const petitionData = {
+    title: "Protect the Local Wetlands",
+    summary: "Join us in preserving our community's precious wetland ecosystem from commercial development.",
+    description: `Our local wetlands are home to over 150 species of birds, countless amphibians, and serve as a natural flood control system that has protected our community for decades.
+
+
+A proposed commercial development threatens to destroy 80% of this irreplaceable habitat. Once these wetlands are gone, they cannot be restored to their current biodiversity and ecological function.
+
+
+We are calling on the City Council to reject the development proposal and instead designate the wetlands as a protected conservation area. This petition will be presented at the next City Council meeting on March 15th.
+
+
+Your signature matters. Together, we can ensure that future generations will be able to enjoy and benefit from this natural treasure.`,
+    targetSignatures: 1000,
+    shareUrl: typeof window !== "undefined" ? window.location.href : "",
+    shareText: "Help protect our local wetlands! Sign this important petition.",
+  }
+
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
+      <main className="container mx-auto px-4 py-8 max-w-4xl">
+        <PetitionIntro
+          title={petitionData.title}
+          summary={petitionData.summary}
+          description={petitionData.description}
+          signatures={signatures}
+          targetSignatures={petitionData.targetSignatures}
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        {/* 
+        <div className="flex justify-center mt-12">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="grid lg:grid-cols-3 gap-8 mt-12 ">
+            <div className="lg:col-span-2">
+              <PetitionForm onSubmit={handleSignPetition} disabled={showSuccess} />
+            </div>
+
+
+            <div className="lg:col-span-1">
+            <div className="lg:col-span-3">
+              <SignatureStats signatures={signatures} targetSignatures={petitionData.targetSignatures} />
+            </div>
+          </div>
+        </  div> */}
+        <div className="flex justify-center mt-12">
+          <div className="w-full max-w-5xl px-4">
+            <div className="grid grid-cols-1">
+              <div>
+                <SignatureStats
+                  signatures={signatures}
+                  targetSignatures={petitionData.targetSignatures}
+                />
+              </div>
+            </div>
+          </div>
         </div>
+
+
+
+        {showSuccess && newSignature && (
+          <SuccessMessage
+            signature={newSignature}
+            shareUrl={petitionData.shareUrl}
+            shareText={petitionData.shareText}
+            onClose={() => setShowSuccess(false)}
+          />
+        )}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+
+      <Footer shareUrl={petitionData.shareUrl} shareText={petitionData.shareText} />
     </div>
-  );
+  )
 }
