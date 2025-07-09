@@ -29,13 +29,13 @@ export async function POST(req: Request) {
     console.log("OpenAI Status:", openaiRes.status);
     console.log("OpenAI Response:", JSON.stringify(openaiJson, null, 2));
 
-    let emailText: string = `Dear ${name}, thank you for signing our animal welfare petition! Your support helps protect millions of animals in India. Please consider donating or volunteering at https://yourdomain.com.`;;
+    let emailText: string;
     if (!openaiRes.ok || !openaiJson.choices?.[0]?.message?.content) {
         console.error("OpenAI API error:", openaiJson.error || "No content returned");
-        const emailText = `Dear ${name}, thank you for signing our animal welfare petition! Your support helps protect millions of animals in India. Please consider donating or volunteering at https://yourdomain.com.`;
+        emailText = `Dear ${name}, thank you for signing our animal welfare petition! Your support helps protect millions of animals in India. Please consider donating or volunteering at https://yourdomain.com.`;
         // Proceed with email sending using fallback
     } else {
-        const emailText = openaiJson.choices[0].message.content;
+        emailText = openaiJson.choices[0].message.content;
     }
 
     const htmlContent = `
