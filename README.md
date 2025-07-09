@@ -8,35 +8,35 @@ Perfect for activist platforms, NGOs, or community campaigns that want to show g
 ## 🐾 Problem: Petition Fatigue in Animal Welfare Organizations
 Animal welfare NGOs often:
 
-Receive high volumes of online petition signups and support messages.
+- Receive high volumes of online petition signups and support messages.
 
-Struggle to manually acknowledge and follow up with each signer.
+- Struggle to manually acknowledge and follow up with each signer.
 
-Miss out on engagement opportunities with potential volunteers, donors, or supporters.
+- Miss out on engagement opportunities with potential volunteers, donors, or supporters.
 
-Have no simple way to categorize or route petition data for real-world action.
+- Have no simple way to categorize or route petition data for real-world action.
 
 This causes:
 
-Delays in building trust with petitioners.
+- Delays in building trust with petitioners.
 
-Disconnected supporter journeys.
+- Disconnected supporter journeys.
 
-Missed chances for grassroots mobilization and impact.
+- Missed chances for grassroots mobilization and impact.
 
 ---
 ## 💡 Our Solution: Petition Autoresponder with AI Categorization
 A simple but smart tool that:
 
-Instantly thanks supporters for signing petitions.
+- Instantly thanks supporters for signing petitions.
 
-Uses AI to extract key concerns from petitions and categorize them (e.g., "street dog abuse", "illegal animal trade", etc.).
+- Uses AI to extract key concerns from petitions and categorize them (e.g., "street dog abuse", "illegal animal trade", etc.).
 
-Logs these categorized entries in a Google Sheet dashboard.
+- Logs these categorized entries in a Google Sheet dashboard.
 
-Routes critical categories to relevant authorities or local action groups via email triggers.
+- Routes critical categories to relevant authorities or local action groups via email triggers.
 
-Can be extended to integrate with tools like WhatsApp, Telegram, or CRM platforms.
+- Can be extended to integrate with tools like WhatsApp, Telegram, or CRM platforms.
 
 ---
 ## 🚀 Features
