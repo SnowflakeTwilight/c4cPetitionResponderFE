@@ -61,7 +61,7 @@
 //       })
 //     } catch (error) {
 //       console.error('Error signing petition:', error)
-      
+
 //       toast({
 //         title: "Error",
 //         description: error.message || "There was a problem submitting your signature. Please try again.",
@@ -199,7 +199,7 @@ interface PetitionFormProps {
 
 export function PetitionForm({ onSubmit, disabled = false }: PetitionFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-//   const { toast } = useToast()
+  //   const { toast } = useToast()
 
 
   const {
@@ -209,7 +209,7 @@ export function PetitionForm({ onSubmit, disabled = false }: PetitionFormProps) 
     reset,
   } = useForm<FormData>()
 
-  
+
   const onFormSubmit = async (data: FormData) => {
     setIsSubmitting(true)
 
@@ -223,16 +223,32 @@ export function PetitionForm({ onSubmit, disabled = false }: PetitionFormProps) 
       reset()
 
 
-      toast({
-        title: "Thank you for signing!",
-        description: "Your signature has been recorded and a confirmation email will be sent.",
-      })
+      toast(
+        <div>
+          <p className="font-medium">Thank you for signing!</p>
+          <p className="text-sm text-muted-foreground">
+            Your signature has been recorded and a confirmation email will be sent.
+          </p>
+        </div>
+        //   {
+        //   title: "Thank you for signing!",
+        //   description: "Your signature has been recorded and a confirmation email will be sent.",
+        // }
+      )
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was a problem submitting your signature. Please try again.",
-        variant: "destructive",
-      })
+      toast(
+        <div>
+          <p className="font-medium text-red-600">Error</p>
+          <p className="text-sm text-muted-foreground">
+            There was a problem submitting your signature. Please try again.
+          </p>
+        </div>
+        //   {
+        //   title: "Error",
+        //   description: "There was a problem submitting your signature. Please try again.",
+        //   variant: "destructive",
+        // }
+      )
     } finally {
       setIsSubmitting(false)
     }
