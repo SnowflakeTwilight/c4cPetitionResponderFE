@@ -215,8 +215,18 @@ export function PetitionForm({ onSubmit, disabled = false }: PetitionFormProps) 
 
 
     try {
+      const res = await fetch("/api/webhook", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      })
+
+     if (!res.ok) throw new Error("Failed to submit")
+
       // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      // await new Promise((resolve) => setTimeout(resolve, 1500))
 
 
       onSubmit(data)
@@ -236,6 +246,7 @@ export function PetitionForm({ onSubmit, disabled = false }: PetitionFormProps) 
         // }
       )
     } catch (error) {
+      console.error(error)
       toast(
         <div>
           <p className="font-medium text-red-600">Error</p>
