@@ -73,8 +73,8 @@ export default function PetitionPage() {
 
 
   const petitionData = {
-    title: "Protect the Local Wetlands",
-    summary: "Join us in preserving our community's precious wetland ecosystem from commercial development.",
+    title: "PAWTITION",
+    summary: "Every petition deserves an echo.",
     description: `Our local wetlands are home to over 150 species of birds, countless amphibians, and serve as a natural flood control system that has protected our community for decades.
 
 

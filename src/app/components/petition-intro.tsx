@@ -36,14 +36,14 @@ export function PetitionIntro({ title, summary, description, signatures, targetS
       <div className="text-center space-y-6">
         <div className="relative">
           <img
-            src="/placeholder.svg?height=400&width=800"
+            src="https://tse2.mm.bing.net/th/id/OIP.PKIEkpaGH1jXdymDjnSlKQHaD0?rs=1&pid=ImgDetMain&o=7&rm=3"
             alt="Wetlands landscape with birds and wildlife"
             className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
           />
           <div className="absolute inset-0 bg-black/30 rounded-lg flex items-center justify-center">
             <div className="text-white text-center px-4">
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">{title}</h1>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto">{summary}</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black">{title}</h1>
+              <p className="text-xl md:text-xl max-w-2xl mx-auto mt-15  text-black">{summary}</p>
             </div>
           </div>
         </div>
@@ -62,23 +62,41 @@ export function PetitionIntro({ title, summary, description, signatures, targetS
       <div className="grid md:grid-cols-3 gap-6">
         {[
           {
-            icon: <Leaf className="h-12 w-12 text-green-600 mx-auto mb-4" />,
-            title: "Biodiversity",
-            desc: "Home to 150+ bird species and countless other wildlife",
-            back: "Wetlands help sustain endangered species and ecological balance.",
+            icon: <Leaf className="h-12 w-12 text-red-600 mx-auto mb-4" />,
+            title: "Animal Welfare",
+            desc: "Speak up for voiceless animals suffering in silence",
+            back: "Promote humane treatment, proper care, and legal rights for all animals.",
           },
           {
-            icon: <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />,
-            title: "Flood Protection",
-            desc: "Natural flood control system protecting our community",
-            back: "They absorb heavy rain and reduce downstream flood risk.",
+            icon: <Shield className="h-12 w-12 text-blue-500 mx-auto mb-4" />,
+            title: "Marine Captivity",
+            desc: "End dolphin shows and captivity in cramped tanks",
+            back: "Support ethical marine conservation and protect dolphins' freedom in the wild.",
           },
           {
             icon: <Users className="h-12 w-12 text-purple-600 mx-auto mb-4" />,
-            title: "Community Asset",
-            desc: "Irreplaceable natural treasure for future generations",
-            back: "Provides space for learning, recreation, and nature connection.",
+            title: "Peace & Protection",
+            desc: "Fight cruelty, foster compassion, and create a safer world for animals",
+            back: "Protect all living beings from exploitation and ensure peaceful coexistence.",
           },
+          // {
+          //   icon: <Leaf className="h-12 w-12 text-green-600 mx-auto mb-4" />,
+          //   title: "Biodiversity",
+          //   desc: "Home to 150+ bird species and countless other wildlife",
+          //   back: "Wetlands help sustain endangered species and ecological balance.",
+          // },
+          // {
+          //   icon: <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />,
+          //   title: "Flood Protection",
+          //   desc: "Natural flood control system protecting our community",
+          //   back: "They absorb heavy rain and reduce downstream flood risk.",
+          // },
+          // {
+          //   icon: <Users className="h-12 w-12 text-purple-600 mx-auto mb-4" />,
+          //   title: "Community Asset",
+          //   desc: "Irreplaceable natural treasure for future generations",
+          //   back: "Provides space for learning, recreation, and nature connection.",
+          // },
         ].map((card, index) => (
           <ReactCardFlip
             key={index}
